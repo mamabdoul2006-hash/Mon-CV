@@ -1,0 +1,885 @@
+/* ============================
+   1. VARIABLES CSS (palette)
+============================ */
+:root {
+  /* Couleurs principales (thème clair) */
+  --bg:            #f5f3ee;       /* fond de page */
+  --surface:       #ffffff;       /* fond des cartes / sections */
+  --sidebar-bg:    #1c1c1e;       /* couleur sombre gardée pour l'accent */
+  --accent:        #c8a96e;       /* or / doré */
+  --accent-light:  #e8d9b8;       /* or clair */
+  --text-dark:     #1c1c1e;       /* texte principal */
+  --text-muted:    #6b6b6b;       /* texte secondaire */
+  --border:        #e0dbd0;       /* bordures */
+  --nav-bg:        #1c1c1e;       /* fond de la navbar */
+  --nav-text:      #ffffff;
+
+  /* Typographie */
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body:    'DM Sans', sans-serif;
+
+  /* Ombres et arrondis */
+  --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  --radius: 8px;
+}
+
+/* ============================
+   2. THÈME SOMBRE
+============================ */
+body[data-theme="dark"] {
+  --bg:          #121212;
+  --surface:     #1e1e1e;
+  --text-dark:   #e8e4dc;
+  --text-muted:  #9a9690;
+  --border:      #2e2e2e;
+  --nav-bg:      #0a0a0a;
+  --nav-text:    #e8e4dc;
+}
+
+/* ============================
+   3. RESET & BASE
+============================ */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  /* Permet le smooth scroll natif CSS */
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--text-dark);
+  line-height: 1.6;
+  transition: background 0.3s, color 0.3s;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ============================
+   4. BOUTON MODE SOMBRE/CLAIR
+============================ */
+#theme-sombre {
+  position: fixed;
+  top: 72px;        /* juste sous la navbar */
+  right: 20px;
+  z-index: 900;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 2px solid var(--accent);
+  background: var(--surface);
+  color: var(--accent);
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow);
+  transition: background 0.3s, color 0.3s, transform 0.2s;
+}
+
+#theme-sombre:hover {
+  transform: scale(1.1);
+  background: var(--accent);
+  color: #fff;
+}
+
+/* ============================
+   5. BOUTON RETOUR EN HAUT
+   Caché par défaut, affiché par JS au scroll
+============================ */
+#retour-haut {
+  position: fixed;
+  bottom: 30px;
+  right: 20px;
+  z-index: 900;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: none;
+  background: var(--accent);
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+
+  /* Caché par défaut */
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s, transform 0.2s;
+}
+
+#retour-haut.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+#retour-haut:hover {
+  transform: scale(1.1);
+}
+
+/* ============================
+   6. BARRE DE NAVIGATION
+============================ */
+#navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background: var(--nav-bg);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 32px;
+  height: 60px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+.nav-brand {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--accent);
+  letter-spacing: 1px;
+}
+
+/* Liste des liens */
+#nav-links {
+  display: flex;
+  gap: 24px;
+}
+
+#nav-links a {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--nav-text);
+  letter-spacing: 0.5px;
+  padding: 4px 0;
+  border-bottom: 2px solid transparent;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+#nav-links a:hover {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+/* Bouton hamburger – caché sur desktop */
+#hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+
+#hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--nav-text);
+  border-radius: 2px;
+  transition: transform 0.3s, opacity 0.3s;
+}
+
+/* Animation hamburger → croix quand le menu est ouvert */
+#hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+#hamburger.open span:nth-child(2) { opacity: 0; }
+#hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* ============================
+   7. EN-TÊTE 
+============================ */
+#header {
+  margin-top: 60px; /* compense la navbar fixe */
+  background: var(--sidebar-bg);
+  padding: 60px 48px;
+}
+
+.header-content {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 48px;
+}
+
+/* Photo de profil */
+.photo-part {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.photo-img {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  border: 3px solid var(--accent);
+  object-fit: cover;
+}
+
+/* Initiales affichées si l'image ne charge pas */
+.photo-initiales {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 32px;
+  font-weight: 700;
+  color: #fff;
+  /* Cachées si l'image charge (géré par JS) */
+}
+
+/* Infos texte du header */
+.header-info h1 {
+  font-family: var(--font-display);
+  font-size: 42px;
+  font-weight: 300;
+  color: #ffffff;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  line-height: 1.1;
+}
+
+.header-info h1 span {
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.header-titre {
+  font-size: 14px;
+  color: var(--accent-light);
+  margin-top: 8px;
+  font-weight: 400;
+}
+
+.header-universite {
+  font-size: 12px;
+  color: #8a8480;
+  margin-top: 4px;
+}
+
+/* Liste de contacts dans le header */
+.header-contacts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+  margin-top: 16px;
+}
+
+.header-contacts li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: #d4cfc6;
+}
+
+.header-contacts li i {
+  color: var(--accent);
+  font-size: 13px;
+}
+
+/* ============================
+   8. CONTENU PRINCIPAL
+============================ */
+#main-content {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 48px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 56px;
+}
+
+/* ============================
+   9. SECTIONS CV (style commun)
+============================ */
+.cv-section {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Titre de section */
+.section-title {
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-weight: 600;
+  color: var(--text-dark);
+  letter-spacing: 1px;
+  position: relative;
+  padding-bottom: 10px;
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 40px;
+  height: 2px;
+  background: var(--accent);
+}
+
+/* ============================
+   10. SECTION PROFIL
+============================ */
+.about-text {
+  font-size: 15px;
+  color: var(--text-muted);
+  line-height: 1.8;
+  max-width: 700px;
+  text-align: justify;
+}
+
+/* ============================
+   11. TIMELINE (Formation & Expériences)
+============================ */
+.timeline {
+  padding-left: 16px;
+  border-left: 2px solid var(--border);
+  display: flex;
+  flex-direction: column;
+}
+
+.timeline-item {
+  position: relative;
+  padding: 0 0 32px 28px;
+}
+
+.timeline-item:last-child {
+  padding-bottom: 0;
+}
+
+/* Point sur la timeline */
+.timeline-dot {
+  position: absolute;
+  left: -8px;
+  top: 6px;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 2px solid var(--border);
+  transition: border-color 0.2s;
+}
+
+/* Point doré pour l'élément actif */
+.timeline-item.current .timeline-dot {
+  background: var(--accent);
+  border-color: var(--accent);
+  box-shadow: 0 0 0 4px var(--accent-light);
+}
+
+.timeline-year {
+  display: block;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 4px;
+}
+
+.timeline-content h3 {
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.timeline-content p {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+/* Badge "En cours" */
+.badge {
+  font-family: var(--font-body);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  background: var(--accent-light);
+  color: #8a6d3b;
+  padding: 2px 8px;
+  border-radius: 20px;
+}
+
+/* ============================
+   12. COMPÉTENCES (barres de progression)
+============================ */
+.skills-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+}
+
+.skills-group-title {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 16px;
+}
+
+/* Liste des barres */
+.skills-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.skill-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.skill-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.skill-name {
+  font-size: 13px;
+  color: var(--text-dark);
+  font-weight: 400;
+}
+
+.skill-percent {
+  font-size: 12px;
+  color: var(--accent);
+  font-weight: 500;
+}
+
+/* Fond de la barre */
+.skill-bar-bg {
+  width: 100%;
+  height: 6px;
+  background: var(--border);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+/* Barre de remplissage – animée par JS via IntersectionObserver */
+.skill-bar-fill {
+  height: 100%;
+  width: 0%;           /* commence à 0 ; JS met la valeur de data-width */
+  background: var(--accent);
+  border-radius: 3px;
+  transition: width 1s ease;  /* animation douce */
+}
+
+/* Compétences transversales */
+.soft-skills {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.soft-skills li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--text-dark);
+}
+
+.soft-skills li i {
+  color: var(--accent);
+  font-size: 12px;
+}
+
+/* ============================
+   13. SECTION LANGUES
+============================ */
+.langues-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 500px;
+}
+
+.langue-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.langue-nom {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-dark);
+}
+
+.langue-niveau {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+
+/* ============================
+   14. SECTION PROJETS
+============================ */
+.projets-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.projet-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  display: flex;
+  gap: 16px;
+  box-shadow: var(--shadow);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+/* Effet de survol sur les cartes projet */
+.projet-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+}
+
+.projet-icon {
+  font-size: 28px;
+  color: var(--accent);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.projet-info h3 {
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 8px;
+}
+
+.projet-info p {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
+
+.projet-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+/* Étiquettes de technologies */
+.tag {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  background: var(--accent-light);
+  color: #8a6d3b;
+  padding: 2px 8px;
+  border-radius: 20px;
+}
+
+/* ============================
+   15. SECTION CENTRES D'INTÉRÊT
+============================ */
+.interets-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.interet-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 8px 16px;
+  font-size: 13px;
+  color: var(--text-dark);
+  transition: background 0.2s, color 0.2s;
+}
+
+.interet-item i {
+  color: var(--accent);
+  font-size: 14px;
+}
+
+.interet-item:hover {
+  background: var(--accent);
+  color: #fff;
+}
+
+.interet-item:hover i {
+  color: #fff;
+}
+
+/* ============================
+   16. FORMULAIRE DE CONTACT
+============================ */
+.contact-intro {
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+.form-wrapper {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 32px;
+  max-width: 600px;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-group label {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--text-dark);
+}
+
+/* Champs input et textarea */
+.form-group input,
+.form-group textarea {
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--text-dark);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 10px 14px;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  resize: vertical;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-light);
+}
+
+/* Message d'erreur (affiché par JS) */
+.form-error {
+  font-size: 11px;
+  color: #e05252;
+  min-height: 14px; /* réserve l'espace pour éviter le saut de mise en page */
+}
+
+/* Bouton d'envoi */
+#btn-envoyer {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 12px 28px;
+  cursor: pointer;
+  align-self: flex-start;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: background 0.2s, transform 0.2s;
+}
+
+#btn-envoyer:hover {
+  background: #b8943e;
+  transform: translateY(-1px);
+}
+
+/* Message de succès (caché par défaut, affiché par JS) */
+.form-success {
+  font-size: 14px;
+  color: #2e7d32;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  display: none; 
+}
+
+/* ============================
+   17. FOOTER
+============================ */
+#footer {
+  background: var(--sidebar-bg);
+  padding: 32px 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.footer-links {
+  display: flex;
+  gap: 24px;
+}
+
+.footer-links a {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: #d4cfc6;
+  transition: color 0.2s;
+}
+
+.footer-links a:hover {
+  color: var(--accent);
+}
+
+.footer-copy {
+  font-size: 11px;
+  color: #5a5a5c;
+}
+
+/* ============================
+   18. RESPONSIVE – MOBILE
+   Adapté pour écrans < 768px
+============================ */
+@media (max-width: 768px) {
+
+  /* --- Navigation mobile --- */
+  #hamburger {
+    display: flex; /* afficher le bouton hamburger */
+  }
+
+  /* Menu caché par défaut sur mobile */
+  #nav-links {
+    display: none;
+    flex-direction: column;
+    gap: 0;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    background: var(--nav-bg);
+    padding: 16px 0;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  }
+
+  /* Menu affiché quand JS ajoute la classe .open */
+  #nav-links.open {
+    display: flex;
+  }
+
+  #nav-links a {
+    display: block;
+    padding: 12px 32px;
+    border-bottom: none;
+  }
+
+  #nav-links a:hover {
+    background: rgba(200, 169, 110, 0.1);
+  }
+
+  /* --- Header mobile --- */
+  .header-content {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+    padding: 0;
+  }
+
+  #header {
+    padding: 40px 24px;
+  }
+
+  .header-info h1 {
+    font-size: 30px;
+  }
+
+  /* --- Contenu principal mobile --- */
+  #main-content {
+    padding: 32px 20px;
+  }
+
+  /* --- Grille compétences : une colonne sur mobile --- */
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* --- Grille projets : une colonne sur mobile --- */
+  .projets-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* --- Contacts header en colonne --- */
+  .header-contacts {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  /* --- Formulaire pleine largeur --- */
+  .form-wrapper {
+    max-width: 100%;
+    padding: 24px 16px;
+  }
+
+  /* --- Boutons flottants repositionnés --- */
+  #theme-sombre {
+    top: 68px;
+    right: 12px;
+  }
+
+  #retour-haut {
+    bottom: 20px;
+    right: 12px;
+  }
+}

@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CV – Abdoul DIOP</title>
+
+  <!-- Feuille de style externe -->
+  <link rel="stylesheet" href="css/style.css"/>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+
+  <!-- Font Awesome pour les icônes -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+</head>
+<body>
+
+  <!-- ==============================
+       BOUTON MODE SOMBRE / CLAIR
+  ============================== -->
+  <button id="theme-sombre" aria-label="Basculer le thème">
+    <i class="fa-solid fa-moon"></i>
+  </button>
+
+  <!-- ==============================
+       BOUTON RETOUR EN HAUT
+  ============================== -->
+  <button id="retour-haut" aria-label="Retour en haut">
+    <i class="fa-solid fa-arrow-up"></i>
+  </button>
+
+  <!-- ==============================
+       NAVIGATION PRINCIPALE
+  ============================== -->
+  <nav id="navbar">
+    <div class="nav-brand">Abdoul DIOP</div>
+
+    <!-- Bouton hamburger (visible sur mobile uniquement) -->
+    <button id="hamburger" aria-label="Ouvrir le menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <!-- Liens de navigation avec ancres -->
+    <ul id="nav-links">
+      <li><a href="#about">Profil</a></li>
+      <li><a href="#formation">Formation</a></li>
+      <li><a href="#competences">Compétences</a></li>
+      <li><a href="#experiences">Expériences</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- ==============================
+       EN-TÊTE 
+  ============================== -->
+  <header id="header">
+    <div class="header-content">
+
+      <!-- Photo de profil -->
+      <div class="photo-part">
+        <img src="images/Photo d'identité.jpeg" alt="Photo de profil d'Abdoul DIOP" class="photo-img"/>
+        <!-- Initiales affichées si la photo est absente -->
+        <div class="photo-initiales">A D</div>
+      </div>
+
+      <!-- Informations principales -->
+      <div class="header-info">
+        <h1>Abdoul <span>DIOP</span></h1>
+        <p class="header-titre">Étudiant en L2 Informatique</p>
+        <p class="header-universite">Université Iba Der THIAM de Thiès – SÉNÉGAL</p>
+
+        <!-- Coordonnées -->
+        <ul class="header-contacts">
+          <li>
+            <i class="fa-solid fa-phone"></i>
+            +221 78 538 65 69
+          </li>
+          <li>
+            <i class="fa-solid fa-envelope"></i>
+            mamabdoul2006@gmail.com
+          </li>
+          <li>
+            <i class="fa-solid fa-location-dot"></i>
+            N° 58, Diakhao, Thiès – SÉNÉGAL
+          </li>
+          <li>
+            <i class="fa-solid fa-cake-candles"></i>
+            Né le 02/03/2006 à Pikine – SÉNÉGAL
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ==============================
+       CONTENU PRINCIPAL
+  ============================== -->
+  <main id="main-content">
+
+    <!-- ----- PARTIE PROFIL ----- -->
+    <section id="about" class="cv-section">
+      <h2 class="section-title">Profil</h2>
+      <p class="about-text">
+        Passionné de technologie, d'où mes études supérieures en informatique,
+        je suis également très engagé sur les questions sociales :
+        l'esprit de solidarité et l'entraide. Curieux, rigoureux et motivé,
+        je cherche à mettre mes compétences au service de projets innovants
+        tout en continuant à apprendre chaque jour.
+      </p>
+    </section>
+
+    <!-- ----- SECTION FORMATION ----- -->
+    <section id="formation" class="cv-section">
+      <h2 class="section-title">Formation</h2>
+
+      <div class="timeline">
+
+        <article class="timeline-item current">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <span class="timeline-year">2025 / 2026</span>
+            <h3>Licence 2 Informatique <span class="badge">En cours</span></h3>
+            <p>Université Iba Der THIAM, Thiès – SÉNÉGAL</p>
+          </div>
+        </article>
+
+        <article class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <span class="timeline-year">2024 / 2025</span>
+            <h3>Licence 1 Informatique</h3>
+            <p>Université Iba Der THIAM, Thiès – SÉNÉGAL</p>
+          </div>
+        </article>
+
+        <article class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <span class="timeline-year">2023 / 2024</span>
+            <h3>Baccalauréat S2 (Sciences expérimentales)</h3>
+            <p>Lycée Mame Yelli Badiane, Dakar – SÉNÉGAL</p>
+          </div>
+        </article>
+
+        <article class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <span class="timeline-year">2022 / 2023</span>
+            <h3>Terminale S2</h3>
+            <p>Lycée Mame Yelli Badiane, Dakar – SÉNÉGAL</p>
+          </div>
+        </article>
+
+        <article class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <span class="timeline-year">2021 / 2022</span>
+            <h3>Première S2</h3>
+            <p>Lycée Seydina Limamou Laye, Dakar – SÉNÉGAL</p>
+          </div>
+        </article>
+
+        <article class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <span class="timeline-year">2020 / 2021</span>
+            <h3>Seconde S Générale</h3>
+            <p>Lycée Mame Yelli Badiane, Dakar – SÉNÉGAL</p>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ----- SECTION COMPÉTENCES ----- -->
+    <section id="competences" class="cv-section">
+      <h2 class="section-title">Compétences</h2>
+
+      <div class="skills-grid">
+
+        <!-- Compétences techniques avec barres de progression -->
+        <div class="skills-group">
+          <h3 class="skills-group-title">Techniques</h3>
+
+          <ul class="skills-bars">
+
+            <li class="skill-item">
+              <div class="skill-header">
+                <span class="skill-name">SQL / Bases de données</span>
+                <span class="skill-percent">50%</span>
+              </div>
+              <div class="skill-bar-bg">
+                <div class="skill-bar-fill" data-width="50"></div>
+              </div>
+            </li>
+
+            <li class="skill-item">
+              <div class="skill-header">
+                <span class="skill-name">Pack Office</span>
+                <span class="skill-percent">70%</span>
+              </div>
+              <div class="skill-bar-bg">
+                <div class="skill-bar-fill" data-width="70"></div>
+              </div>
+            </li>
+
+          </ul>
+        </div>
+
+        <!-- Compétences transversales -->
+        <div class="skills-group">
+          <h3 class="skills-group-title">Transversales</h3>
+          <ul class="soft-skills">
+            <li><i class="fa-solid fa-check"></i> Logique et esprit d'analyse</li>
+            <li><i class="fa-solid fa-check"></i> Travail en équipe</li>
+            <li><i class="fa-solid fa-check"></i> Résilience et persévérance</li>
+            <li><i class="fa-solid fa-check"></i> Rigueur et dynamisme</li>
+            <li><i class="fa-solid fa-check"></i> Créativité</li>
+            <li><i class="fa-solid fa-check"></i> Veille technologique</li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ----- SECTION EXPÉRIENCES ----- -->
+    <section id="experiences" class="cv-section">
+      <h2 class="section-title">Expériences</h2>
+
+      <div class="timeline">
+
+        <article class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <span class="timeline-year">2025 / 2026</span>
+            <h3>Projet académique – SGRDMS</h3>
+            <p>
+              Conception d'une application web "SGRDMS" pour un centre de santé,
+              dans le cadre du module ACSI(analyse et conception des systèmes d'information) – L2 Informatique.
+              <br/>
+              <a href="https://tropical-project.vercel.app/" target="_blank">Voir le projet</a>
+            </p>
+          </div>
+        </article>
+
+        <article class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <span class="timeline-year">2025 / 2026</span>
+            <h3>Projet académique – Base de données</h3>
+            <p>
+              Modélisation et implémentation d'une base de données relationnelle
+              dans le cadre des cours de L2 Informatique.
+            </p>
+          </div>
+        </article>
+
+        <article class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <span class="timeline-year">2023</span>
+            <h3>Activité associative – Bénévolat</h3>
+            <p>
+              Participation à des actions solidaires au sein d'une association locale
+              à Pikine, renforçant les valeurs d'entraide et de travail en équipe.
+            </p>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+
+    <!-- ----- SECTION LANGUES ----- -->
+    <section id="langues" class="cv-section">
+      <h2 class="section-title">Langues</h2>
+
+      <ul class="langues-list">
+        <li class="langue-item">
+          <span class="langue-nom">Français</span>
+          <span class="langue-niveau">Lu, écrit, parlé – Courant</span>
+          <div class="skill-bar-bg">
+            <div class="skill-bar-fill" data-width="95"></div>
+          </div>
+        </li>
+        <li class="langue-item">
+          <span class="langue-nom">Anglais</span>
+          <span class="langue-niveau">Lu, écrit – Intermédiaire</span>
+          <div class="skill-bar-bg">
+            <div class="skill-bar-fill" data-width="55"></div>
+          </div>
+        </li>
+        <li class="langue-item">
+          <span class="langue-nom">Wolof</span>
+          <span class="langue-niveau">Parlé – Langue maternelle</span>
+          <div class="skill-bar-bg">
+            <div class="skill-bar-fill" data-width="100"></div>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <!-- ----- SECTION CENTRES D'INTÉRÊT ----- -->
+    <section id="interets" class="cv-section">
+      <h2 class="section-title">Centres d'intérêt</h2>
+
+      <ul class="interets-list">
+        <li class="interet-item">
+          <i class="fa-solid fa-users"></i>
+          <span>Association & Bénévolat</span>
+        </li>
+        <li class="interet-item">
+          <i class="fa-solid fa-futbol"></i>
+          <span>Football</span>
+        </li>
+        <li class="interet-item">
+          <i class="fa-solid fa-person-running"></i>
+          <span>Jogging</span>
+        </li>
+        <li class="interet-item">
+          <i class="fa-solid fa-gamepad"></i>
+          <span>Gaming</span>
+        </li>
+        <li class="interet-item">
+          <i class="fa-solid fa-plane"></i>
+          <span>Voyages</span>
+        </li>
+        <li class="interet-item">
+          <i class="fa-solid fa-microchip"></i>
+          <span>Actualités Innovation & Tech</span>
+        </li>
+      </ul>
+    </section>
+
+    <!-- ----- SECTION CONTACT ----- -->
+    <section id="contact" class="cv-section">
+      <h2 class="section-title">Contact</h2>
+      <p class="contact-intro">Vous pouvez me contacter via le formulaire ci-dessous.</p>
+
+        <div class="form-wrapper">
+
+        <div class="form-group">
+          <label for="nom">Nom complet</label>
+          <input type="text" id="nom" placeholder="Votre nom"/>
+          <!-- Le JS afficherra un Message d'erreur si le champ est vide -->
+          <span class="form-error" id="error-nom"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Adresse e-mail</label>
+          <input type="email" id="email" placeholder="exemple@email.com"/>
+          <span class="form-error" id="error-email"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" rows="5" placeholder="Votre message..."></textarea>
+          <span class="form-error" id="error-message"></span>
+        </div>
+
+        <button type="button" id="btn-envoyer">
+          <i class="fa-solid fa-paper-plane"></i> Envoyer
+        </button>
+
+        <!-- Message de succès affiché après envoi valide -->
+        <p id="form-success" class="form-success">
+          <i class="fa-solid fa-circle-check"></i> Message envoyé avec succès !
+        </p>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==============================
+       PIED DE PAGE
+  ============================== -->
+  <footer id="footer">
+    <div class="footer-links">
+      <a href="https://github.com/mamabdoul2006-hash" target="_blank" aria-label="GitHub">
+        <i class="fa-brands fa-github"></i> GitHub
+      </a>
+      <a href="https://facebook.com/lvbdoudiop" target="_blank" aria-label="Facebook">
+        <i class="fa-brands fa-facebook"></i> Facebook
+      </a>
+      <a href="mailto:mamabdoul2006@gmail.com" aria-label="Email">
+        <i class="fa-solid fa-envelope"></i> Email
+      </a>
+    </div>
+    <p class="footer-copy">&copy; 2026 Abdoul DIOP – Tous droits réservés</p>
+  </footer>
+
+  <!-- Script JS lié en bas du body -->
+  <script src="js/script.js"></script>
+
+</body>
+</html>
